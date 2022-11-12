@@ -16,6 +16,13 @@ module.exports = {
   plugins: [
     'react',
   ],
+  settings: {
+    'import/resolver': {
+      node: {
+        moduleDirectory: ['node_modules', 'src/'],
+      },
+    },
+  },
   rules: {
     'react/react-in-jsx-scope': 0,
     'import/extensions': 0,
