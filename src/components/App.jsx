@@ -1,22 +1,43 @@
 import React from 'react';
-import { CssBaseline } from '@mui/material';
+import { Box, CssBaseline, styled } from '@mui/material';
 import { Routes, Route } from 'react-router-dom';
 
 import { Movies, Profile, MovieInformation, Actors, Navbar } from 'components';
 
-const App = () => (
-  <div>
-    <CssBaseline />
-    <Navbar />
-    <main>
-      <Routes>
-        <Route path="/" element={<Movies />} />
-        <Route path="/profile/:id" element={<Profile />} />
-        <Route path="/movie/:id" element={<MovieInformation />} />
-        <Route path="/actors/:id" element={<Actors />} />
-      </Routes>
-    </main>
-  </div>
-);
+const RootStyles = styled(Box)({
+  display: 'flex',
+  height: '100%',
+});
+
+const ToolbarStyles = styled(Box)({
+  height: '70px',
+});
+
+const ContentStyles = styled(Box)({
+  flexGrow: 1,
+  padding: '2em',
+});
+
+const App = () => {
+  console.log('Movies');
+
+  return (
+    <>
+      <CssBaseline />
+      <RootStyles>
+        <Navbar />
+        <ContentStyles component="main">
+          <ToolbarStyles />
+          <Routes>
+            <Route path="/" element={<Movies />} />
+            <Route path="/profile/:id" element={<Profile />} />
+            <Route path="/movie/:id" element={<MovieInformation />} />
+            <Route path="/actors/:id" element={<Actors />} />
+          </Routes>
+        </ContentStyles>
+      </RootStyles>
+    </>
+  );
+};
 
 export default App;
