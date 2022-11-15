@@ -6,3 +6,4 @@ export { default as Navbar } from 'components/NavBar/NavBar';
 export { default as Sidebar } from 'components/Sidebar/Sidebar';
 export { default as MovieList } from 'components/MovieList/MovieList';
 export { default as Movie } from 'components/Movie/Movie';
+export { default as Search } from 'components/Search/Search';
