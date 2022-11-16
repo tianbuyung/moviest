@@ -13,12 +13,15 @@ const CustomGrid = styled(Grid)(({ theme }) => ({
   },
 }));
 
-const MovieList = ({ movies, numberOfMovies }) => (
-  <CustomGrid container>
-    {movies?.results.slice(0, numberOfMovies).map((movie, i) => (
-      <Movie key={i} movie={movie} i={i} />
-    ))}
-  </CustomGrid>
-);
+const MovieList = ({ movies, numberOfMovies, excludeFirst }) => {
+  const startFrom = excludeFirst ? 1 : 0;
+  return (
+    <CustomGrid container>
+      {movies?.results.slice(startFrom, numberOfMovies).map((movie, i) => (
+        <Movie key={i} movie={movie} i={i} />
+      ))}
+    </CustomGrid>
+  );
+};
 
 export default MovieList;
