@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, CssBaseline, styled } from '@mui/material';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 import { Movies, Profile, MovieInformation, Actors, Navbar } from 'components';
 
@@ -16,28 +16,26 @@ const ToolbarStyles = styled(Box)({
 const ContentStyles = styled(Box)({
   flexGrow: 1,
   padding: '2em',
+  width: '100%',
 });
 
-const App = () => {
-  console.log('Movies');
-
-  return (
-    <>
-      <CssBaseline />
-      <RootStyles>
-        <Navbar />
-        <ContentStyles component="main">
-          <ToolbarStyles />
-          <Routes>
-            <Route path="/" element={<Movies />} />
-            <Route path="/profile/:id" element={<Profile />} />
-            <Route path="/movie/:id" element={<MovieInformation />} />
-            <Route path="/actors/:id" element={<Actors />} />
-          </Routes>
-        </ContentStyles>
-      </RootStyles>
-    </>
-  );
-};
+const App = () => (
+  <>
+    <CssBaseline />
+    <RootStyles>
+      <Navbar />
+      <ContentStyles component="main">
+        <ToolbarStyles />
+        <Routes>
+          <Route path="/" element={<Movies />} />
+          <Route path="/approved" element={<Navigate to="/" replace />} />
+          <Route path="/profile/:id" element={<Profile />} />
+          <Route path="/movie/:id" element={<MovieInformation />} />
+          <Route path="/actors/:id" element={<Actors />} />
+        </Routes>
+      </ContentStyles>
+    </RootStyles>
+  </>
+);
 
 export default App;

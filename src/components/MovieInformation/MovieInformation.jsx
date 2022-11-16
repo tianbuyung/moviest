@@ -45,10 +45,16 @@ const PosterImage = styled('img')(({ theme }) => ({
   borderRadius: '20px',
   boxShadow: '0.5em 1em 1em rgb(64,64,70)',
   width: '100%',
-  marginBottom: '30px',
-  [theme.breakpoints.up('lg')]: {
+  display: 'flex',
+  [theme.breakpoints.down('lg')]: {
     margin: '0 auto',
     width: '80%',
+    marginBottom: '30px',
+  },
+  [theme.breakpoints.down('md')]: {
+    margin: '0 auto',
+    width: '50%',
+    marginBottom: '30px',
   },
   [theme.breakpoints.down('sm')]: {
     margin: '0 auto',
@@ -141,7 +147,8 @@ const MovieInformation = () => {
             </Typography>
           </Box>
           <Typography variant="h6" align="center" gutterBottom>
-            {data?.runtime}min / {data?.spoken_languages.length && data?.spoken_languages[0].name}
+            {data?.runtime}min | Language:{' '}
+            {data?.spoken_languages?.length && data?.spoken_languages[0]?.name}
           </Typography>
         </MovieGrid>
         <Grid
@@ -224,7 +231,11 @@ const MovieInformation = () => {
         <Grid item container sx={{ marginTop: '2rem' }}>
           <StyledButtonContainer>
             <StyledButtonContainer component={Grid} item container xs={12} sm={6}>
-              <ButtonGroup size="medium" variant="outlined">
+              <ButtonGroup
+                size="medium"
+                variant="outlined"
+                orientation={isMobile ? 'vertical' : 'horizontal'}
+              >
                 <LinkMaterial
                   component={Button}
                   target="_blank"
@@ -257,7 +268,11 @@ const MovieInformation = () => {
               </ButtonGroup>
             </StyledButtonContainer>
             <StyledButtonContainer component={Grid} item container xs={12} sm={6}>
-              <ButtonGroup size="medium" variant="outlined">
+              <ButtonGroup
+                size="medium"
+                variant="outlined"
+                orientation={isMobile ? 'vertical' : 'horizontal'}
+              >
                 <Button
                   onClick={addToFavorites}
                   endIcon={isMovieFavorite ? <FavoriteBorderOutlined /> : <Favorite />}
