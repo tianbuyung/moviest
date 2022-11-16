@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Divider,
   List,
@@ -31,6 +31,10 @@ const Sidebar = ({ onMobileOpen }) => {
   const theme = useTheme();
   const { data, isFetching } = useGetGenresQuery();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    onMobileOpen(false);
+  }, [genreIdOrCategoryName]);
 
   return (
     <>
