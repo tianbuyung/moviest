@@ -64,7 +64,7 @@ const Sidebar = ({ onMobileOpen }) => {
                 <Box
                   component="img"
                   sx={{
-                    filter: () => (theme.palette.mode === 'dark' ? 'invert(1)' : 'dark'),
+                    filter: () => theme.palette.mode === 'dark' && 'invert(1)',
                   }}
                   src={genreIcons[label.toLowerCase()]}
                   height="30px"
@@ -98,7 +98,7 @@ const Sidebar = ({ onMobileOpen }) => {
                   <Box
                     component="img"
                     sx={{
-                      filter: () => (theme.palette.mode === 'dark' ? 'invert(1)' : 'dark'),
+                      filter: () => theme.palette.mode === 'dark' && 'invert(1)',
                     }}
                     src={genreIcons[name.toLowerCase()]}
                     height="30px"
