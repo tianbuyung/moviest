@@ -37,9 +37,11 @@ const Movie = ({ movie, i }) => (
         <Box
           component="img"
           alt={movie.title}
-          src={movie.poster_path
-            ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
-            : 'https://www.fillmurray.com/200/300'}
+          src={
+            movie.poster_path
+              ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+              : 'https://www.fillmurray.com/200/300'
+          }
           sx={{
             borderRadius: '20px',
             height: '300px',
@@ -49,9 +51,7 @@ const Movie = ({ movie, i }) => (
             },
           }}
         />
-        <CustomTypography variant="h5">
-          {movie.title}
-        </CustomTypography>
+        <CustomTypography variant="h5">{movie.title}</CustomTypography>
         <Tooltip disableTouchListener title={`${movie.vote_average} / 10`}>
           <div>
             <Rating readOnly value={movie.vote_average / 2} precision={0.1} />

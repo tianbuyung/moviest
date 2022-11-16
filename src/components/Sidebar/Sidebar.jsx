@@ -1,5 +1,15 @@
 import React from 'react';
-import { Divider, List, ListItemText, ListSubheader, ListItemIcon, Box, CircularProgress, useTheme, ListItemButton } from '@mui/material';
+import {
+  Divider,
+  List,
+  ListItemText,
+  ListSubheader,
+  ListItemIcon,
+  Box,
+  CircularProgress,
+  useTheme,
+  ListItemButton,
+} from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -49,14 +59,12 @@ const Sidebar = ({ onMobileOpen }) => {
               textDecoration: 'none',
             }}
           >
-            <ListItemButton
-              onClick={() => dispatch(selectGenreOrCategory(value))}
-            >
+            <ListItemButton onClick={() => dispatch(selectGenreOrCategory(value))}>
               <ListItemIcon>
                 <Box
                   component="img"
                   sx={{
-                    filter: () => (theme.palette.mode === 'dark' ? 'invert(1)' : 'dark'),
+                    filter: () => theme.palette.mode === 'dark' && 'invert(1)',
                   }}
                   src={genreIcons[label.toLowerCase()]}
                   height="30px"
@@ -70,13 +78,12 @@ const Sidebar = ({ onMobileOpen }) => {
       <Divider />
       <List>
         <ListSubheader>Genres</ListSubheader>
-        { isFetching
-          ? (
-            <Box display="flex" justifyContent="center">
-              <CircularProgress />
-            </Box>
-          )
-          : data?.genres.map(({ name, id }) => (
+        {isFetching ? (
+          <Box display="flex" justifyContent="center">
+            <CircularProgress />
+          </Box>
+        ) : (
+          data?.genres.map(({ name, id }) => (
             <Box
               key={name}
               component={NavLink}
@@ -86,14 +93,12 @@ const Sidebar = ({ onMobileOpen }) => {
                 textDecoration: 'none',
               }}
             >
-              <ListItemButton
-                onClick={() => dispatch(selectGenreOrCategory(id))}
-              >
+              <ListItemButton onClick={() => dispatch(selectGenreOrCategory(id))}>
                 <ListItemIcon>
                   <Box
                     component="img"
                     sx={{
-                      filter: () => (theme.palette.mode === 'dark' ? 'invert(1)' : 'dark'),
+                      filter: () => theme.palette.mode === 'dark' && 'invert(1)',
                     }}
                     src={genreIcons[name.toLowerCase()]}
                     height="30px"
@@ -102,7 +107,8 @@ const Sidebar = ({ onMobileOpen }) => {
                 <ListItemText primary={name} />
               </ListItemButton>
             </Box>
-          ))}
+          ))
+        )}
       </List>
     </>
   );

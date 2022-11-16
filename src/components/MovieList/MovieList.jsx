@@ -13,16 +13,12 @@ const CustomGrid = styled(Grid)(({ theme }) => ({
   },
 }));
 
-const MovieList = ({ movies }) => {
-  console.log('MovieList');
-
-  return (
-    <CustomGrid
-      container
-    >
-      {movies?.results.map((movie, i) => <Movie key={i} movie={movie} i={i} />)}
-    </CustomGrid>
-  );
-};
+const MovieList = ({ movies, numberOfMovies }) => (
+  <CustomGrid container>
+    {movies?.results.slice(0, numberOfMovies).map((movie, i) => (
+      <Movie key={i} movie={movie} i={i} />
+    ))}
+  </CustomGrid>
+);
 
 export default MovieList;

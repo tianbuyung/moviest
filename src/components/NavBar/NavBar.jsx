@@ -1,5 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { AppBar, IconButton, Toolbar, Drawer, Button, Avatar, styled, useMediaQuery, Box } from '@mui/material';
+import React, { useContext, useEffect, useState } from 'react';
+import {
+  AppBar,
+  IconButton,
+  Toolbar,
+  Drawer,
+  Button,
+  Avatar,
+  styled,
+  useMediaQuery,
+  Box,
+} from '@mui/material';
 import { Menu, AccountCircle, Brightness4, Brightness7 } from '@mui/icons-material';
 import { NavLink } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
@@ -8,6 +18,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Search, Sidebar } from 'components';
 import { fetchToken, moviesApi, createSessionId } from 'utils';
 import { setUser, userSelector } from 'features/auth';
+import { ColorModeContext } from 'utils/ToggleColorMode';
 
 const CustomToolbar = styled(Toolbar)(({ theme }) => ({
   height: '80px',
@@ -44,6 +55,8 @@ const NavBar = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
 
+  const colorMode = useContext(ColorModeContext);
+
   const token = localStorage.getItem('request_token');
   const sessionIdFromLocalStorage = localStorage.getItem('session_id');
 
@@ -51,7 +64,9 @@ const NavBar = () => {
     const loginUser = async () => {
       if (token) {
         if (sessionIdFromLocalStorage) {
-          const { data: userData } = await moviesApi.get(`/account?session_id=${sessionIdFromLocalStorage}`);
+          const { data: userData } = await moviesApi.get(
+            `/account?session_id=${sessionIdFromLocalStorage}`,
+          );
           dispatch(setUser(userData));
         } else {
           const sessionId = await createSessionId();
@@ -69,11 +84,15 @@ const NavBar = () => {
       <AppBar position="fixed">
         <CustomToolbar>
           {isMobile && (
-          <MenuButton color="inherit" edge="start" onClick={() => setMobileOpen((prevMobileOpen) => !prevMobileOpen)}>
-            <Menu />
-          </MenuButton>
+            <MenuButton
+              color="inherit"
+              edge="start"
+              onClick={() => setMobileOpen((prevMobileOpen) => !prevMobileOpen)}
+            >
+              <Menu />
+            </MenuButton>
           )}
-          <IconButton color="inherit" sx={{ ml: 1 }} onClick={() => {}}>
+          <IconButton color="inherit" sx={{ ml: 1 }} onClick={colorMode.toggleColorMode}>
             {theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
           </IconButton>
           {!isMobile && <Search />}
@@ -87,7 +106,6 @@ const NavBar = () => {
                 color="inherit"
                 component={NavLink}
                 to={`/profile/${user.id}`}
-                onClick={() => {}}
                 sx={{
                   '&:hover': {
                     color: 'white !important',
@@ -104,7 +122,7 @@ const NavBar = () => {
               </Button>
             )}
           </Box>
-          {isMobile && 'Search...'}
+          {isMobile && <Search />}
         </CustomToolbar>
       </AppBar>
       <Box>

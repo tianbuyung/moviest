@@ -19,6 +19,9 @@ const Search = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const dispatch = useDispatch();
+  const location = useLocation();
+
+  if (location.pathname !== '/') return null;
 
   const handelKeyPress = (e) => {
     if (e.key === 'Enter') {
