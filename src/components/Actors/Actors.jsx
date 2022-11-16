@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Button, CircularProgress, Grid, styled, Typography } from '@mui/material';
 import { ArrowBack } from '@mui/icons-material';
 import { useParams, useNavigate } from 'react-router-dom';
 
 import { useGetActorDetailsQuery, useGetMoviesByActorIdQuery } from 'services/TMDB';
-import { MovieList } from 'components';
+import { MovieList, Pagination } from 'components';
 
 const ActorImage = styled('img')(() => ({
   maxWidth: '90%',
@@ -16,7 +16,7 @@ const ActorImage = styled('img')(() => ({
 const Actors = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const page = 1;
+  const [page, setPage] = useState(1);
 
   const { data, isFetching, error } = useGetActorDetailsQuery(id);
   const {
@@ -112,7 +112,10 @@ const Actors = () => {
             Something went wrong!
           </Typography>
         )}
-        {movies && movies.results.length > 0 && <MovieList movies={movies} numberOfMovies={12} />}
+        {movies && movies?.results?.length > 0 && <MovieList movies={movies} numberOfMovies={12} />}
+        {movies && (
+          <Pagination currentPage={page} setPage={setPage} totalPages={movies?.total_pages} />
+        )}
       </Box>
     </Grid>
   );
