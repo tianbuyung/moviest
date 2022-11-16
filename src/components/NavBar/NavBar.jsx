@@ -1,5 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { AppBar, IconButton, Toolbar, Drawer, Button, Avatar, styled, useMediaQuery, Box } from '@mui/material';
+import {
+  AppBar,
+  IconButton,
+  Toolbar,
+  Drawer,
+  Button,
+  Avatar,
+  styled,
+  useMediaQuery,
+  Box,
+} from '@mui/material';
 import { Menu, AccountCircle, Brightness4, Brightness7 } from '@mui/icons-material';
 import { NavLink } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
@@ -51,7 +61,9 @@ const NavBar = () => {
     const loginUser = async () => {
       if (token) {
         if (sessionIdFromLocalStorage) {
-          const { data: userData } = await moviesApi.get(`/account?session_id=${sessionIdFromLocalStorage}`);
+          const { data: userData } = await moviesApi.get(
+            `/account?session_id=${sessionIdFromLocalStorage}`,
+          );
           dispatch(setUser(userData));
         } else {
           const sessionId = await createSessionId();
@@ -69,9 +81,13 @@ const NavBar = () => {
       <AppBar position="fixed">
         <CustomToolbar>
           {isMobile && (
-          <MenuButton color="inherit" edge="start" onClick={() => setMobileOpen((prevMobileOpen) => !prevMobileOpen)}>
-            <Menu />
-          </MenuButton>
+            <MenuButton
+              color="inherit"
+              edge="start"
+              onClick={() => setMobileOpen((prevMobileOpen) => !prevMobileOpen)}
+            >
+              <Menu />
+            </MenuButton>
           )}
           <IconButton color="inherit" sx={{ ml: 1 }} onClick={() => {}}>
             {theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
@@ -104,7 +120,7 @@ const NavBar = () => {
               </Button>
             )}
           </Box>
-          {isMobile && 'Search...'}
+          {isMobile && <Search />}
         </CustomToolbar>
       </AppBar>
       <Box>

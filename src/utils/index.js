@@ -30,7 +30,9 @@ export const createSessionId = async () => {
 
   if (token) {
     try {
-      const { data: { session_id } } = await moviesApi.post('/authentication/session/new', {
+      const {
+        data: { session_id },
+      } = await moviesApi.post('/authentication/session/new', {
         request_token: token,
       });
 

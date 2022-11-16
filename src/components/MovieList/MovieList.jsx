@@ -13,14 +13,14 @@ const CustomGrid = styled(Grid)(({ theme }) => ({
   },
 }));
 
-const MovieList = ({ movies }) => {
+const MovieList = ({ movies, numberOfMovies }) => {
   console.log('MovieList');
 
   return (
-    <CustomGrid
-      container
-    >
-      {movies?.results.map((movie, i) => <Movie key={i} movie={movie} i={i} />)}
+    <CustomGrid container>
+      {movies?.results.slice(0, numberOfMovies).map((movie, i) => (
+        <Movie key={i} movie={movie} i={i} />
+      ))}
     </CustomGrid>
   );
 };

@@ -23,9 +23,11 @@ const Profile = () => {
           Logout &nbsp; <ExitToApp />
         </Button>
       </Box>
-      {!favoriteMovies.length
-        ? (<Typography>Add favorites or watchlist some movies to see them here </Typography>)
-        : (<Box>Favorites Movies</Box>)}
+      {!favoriteMovies.length ? (
+        <Typography>Add favorites or watchlist some movies to see them here </Typography>
+      ) : (
+        <Box>Favorites Movies</Box>
+      )}
     </Box>
   );
 };

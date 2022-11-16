@@ -8,8 +8,14 @@ import { MovieList } from 'components';
 
 const Movies = () => {
   const [page, setPage] = useState(1);
-  const { genreIdOrCategoryName, searchQuery } = useSelector((state) => state.currentGenreOrCategory);
-  const { data, error, isFetching } = useGetMoviesQuery({ genreIdOrCategoryName, page, searchQuery });
+  const { genreIdOrCategoryName, searchQuery } = useSelector(
+    (state) => state.currentGenreOrCategory,
+  );
+  const { data, error, isFetching } = useGetMoviesQuery({
+    genreIdOrCategoryName,
+    page,
+    searchQuery,
+  });
 
   if (isFetching) {
     return (
@@ -42,7 +48,9 @@ const Movies = () => {
   }
 
   return (
-    <div><MovieList movies={data} /></div>
+    <div>
+      <MovieList movies={data} />
+    </div>
   );
 };
 

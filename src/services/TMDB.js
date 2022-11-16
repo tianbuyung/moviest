@@ -33,10 +33,25 @@ export const tmdbApi = createApi({
         return `movie/popular?page=${page}&api_key=${tmdbApiKey}`;
       },
     }),
+
+    //* Get Movie
+    getMovie: builder.query({
+      query: (id) => `movie/${id}?append_to_response=videos,credits&api_key=${tmdbApiKey}`,
+    }),
+
+    //* Get User Specific Lists
+    getRecommendations: builder.query({
+      // eslint-disable-next-line camelcase
+      query: ({ movie_id, list }) =>
+        // eslint-disable-next-line implicit-arrow-linebreak, camelcase
+        `movie/${movie_id}/${list}?api_key=${tmdbApiKey}`,
+    }),
   }),
 });
 
 export const {
   useGetMoviesQuery,
   useGetGenresQuery,
+  useGetMovieQuery,
+  useGetRecommendationsQuery,
 } = tmdbApi;
