@@ -1,6 +1,6 @@
 {
-  "name": "filmpire-tianbuyung-web-mock-up",
-  "version": "0.1.0",
+  "name": "moviest",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@alan-ai/alan-sdk-web": "^1.8.40",
