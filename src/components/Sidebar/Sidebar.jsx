@@ -23,8 +23,12 @@ const categories = [
   { label: 'Upcoming', value: 'upcoming' },
 ];
 
-const redLogo = 'https://fontmeme.com/permalink/210930/8531c658a743debe1e1aa1a2fc82006e.png';
-const blueLogo = 'https://fontmeme.com/permalink/210930/6854ae5c7f76597cf8680e48a2c8a50a.png';
+// eslint-disable-next-line operator-linebreak
+const redLogo =
+  'https://firebasestorage.googleapis.com/v0/b/binar-e-commerce-007.appspot.com/o/moviest%2FLogo%20Moviest%20red.png?alt=media&token=c2b98ab1-1331-4336-8bc1-c0bed6364fbc';
+// eslint-disable-next-line operator-linebreak
+const blueLogo =
+  'https://firebasestorage.googleapis.com/v0/b/binar-e-commerce-007.appspot.com/o/moviest%2FLogo%20Moviest%20blue.png?alt=media&token=7bc5b105-b607-436f-b4a8-31801a886ff1';
 
 const Sidebar = ({ onMobileOpen }) => {
   const { genreIdOrCategoryName } = useSelector((state) => state.currentGenreOrCategory);
@@ -46,7 +50,7 @@ const Sidebar = ({ onMobileOpen }) => {
         <Box
           component="img"
           sx={{ width: '70%' }}
-          src={theme.palette.mode === 'light' ? redLogo : blueLogo}
+          src={theme.palette.mode === 'light' ? blueLogo : redLogo}
           alt="Filmpire logo"
         />
       </Box>
